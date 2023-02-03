@@ -28,29 +28,9 @@ struct ActivityCardView: View {
                     .shadow(radius: 8)
                 
                 HStack {
-                    Text("NOPE")
-                        .padding()
-                        .font(.title)
-                        .rotationEffect(.degrees(-20))
-                        .foregroundColor(Color(.systemPink))
-                        .overlay(
-                                RoundedRectangle(cornerRadius: 16)
-                                    .stroke(Color(.systemPink), lineWidth: 4)
-                                    .rotationEffect(.degrees(-20))
-                        )
-                        .opacity(Double((offset.width/(UIScreen.main.bounds.width-300) * -1)))
+                    StickerTextView(text: "CONSENT", degrees: -20, color: Color(.systemMint), offset: offset, multiplier: 1)
                     Spacer()
-                    Text("CONSENT")
-                        .padding()
-                        .font(.title)
-                        .rotationEffect(.degrees(20))
-                        .foregroundColor(Color(.systemMint))
-                        .overlay(
-                                RoundedRectangle(cornerRadius: 16)
-                                    .stroke(Color(.systemMint), lineWidth: 4)
-                                    .rotationEffect(.degrees(20))
-                        )
-                        .opacity(Double(offset.width/(UIScreen.main.bounds.width-300)))
+                    StickerTextView(text: "NOPE", degrees: 20, color: Color(.systemPink), offset: offset, multiplier: -1)
                 }
                 .padding()
                 .padding(.top, 40)
@@ -117,3 +97,5 @@ struct ActivityCardView_Previews: PreviewProvider {
         ContentView()
     }
 }
+
+

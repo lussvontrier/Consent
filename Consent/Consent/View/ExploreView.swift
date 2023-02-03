@@ -8,7 +8,7 @@
 import SwiftUI
 
 struct ExploreView: View {
-    @StateObject var exploreData = ExploreViewModel()
+    @StateObject private var exploreData = ExploreViewModel()
     
     var body: some View {
         
@@ -56,29 +56,9 @@ struct ExploreView: View {
             
             //MARK: Action Buttons
             HStack(spacing: 30) {
-                Button {
-                    
-                } label: {
-                    Image(systemName: "xmark")
-                        .font(.system(size: 30, weight: .bold))
-                        .foregroundColor(.white)
-                        .shadow(radius: 5)
-                        .padding(15)
-                        .background(Color(.systemPink))
-                        .clipShape(Circle())
-                }
+                SwipeActionButton(imageName: "xmark", backgroundColor: Color(.systemPink))
                 
-                Button {
-                    
-                } label: {
-                    Image(systemName: "suit.heart.fill")
-                        .font(.system(size: 30, weight: .bold))
-                        .foregroundColor(.white)
-                        .shadow(radius: 5)
-                        .padding(15)
-                        .background(Color(.systemMint))
-                        .clipShape(Circle())
-                }
+                SwipeActionButton(imageName: "suit.heart.fill", backgroundColor: Color(.systemMint))
             }
             .padding(.bottom)
             .disabled(exploreData.displayableActivities?.isEmpty ?? false)
