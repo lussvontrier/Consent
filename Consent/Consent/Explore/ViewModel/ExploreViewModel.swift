@@ -13,13 +13,13 @@ class ExploreViewModel: ObservableObject {
     
     init() {
         fetchedActivities = [
-            Activity(name: "Bondage", color: .blue),
-            Activity(name: "Kissing", color: .cyan),
-            Activity(name: "Oral", color: .indigo),
-            Activity(name: "Spanking", color: .purple),
-            Activity(name: "Handcuffs", color: .orange),
-            Activity(name: "Missionary", color: .teal),
-            Activity(name: "SixtyNine", color: .yellow)
+            Activity(name: "One", color: .blue),
+            Activity(name: "Two", color: .cyan),
+            Activity(name: "Three", color: .indigo),
+            Activity(name: "Four", color: .purple),
+            Activity(name: "Five", color: .orange),
+            Activity(name: "Six", color: .teal),
+            Activity(name: "Seven", color: .yellow)
         ]
         
         displayableActivities = fetchedActivities

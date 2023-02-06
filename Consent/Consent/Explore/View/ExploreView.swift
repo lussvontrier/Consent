@@ -14,21 +14,10 @@ struct ExploreView: View {
         
         //MARK: Top Menu
         VStack {
-            Button {
-                
-            } label: {
-                Image(ImageNames.Icons.menu)
-                    .resizable()
-                    .aspectRatio(contentMode: .fit)
-                    .frame(width: 30, height: 30)
-            }
-            .frame(maxWidth: .infinity, alignment: .leading)
-            .overlay(
-                Text("Discover")
+            HStack {
+                Text("Explore")
                     .font(.title.bold())
-            )
-            .foregroundColor(.black)
-            .padding()
+            }
             
             //MARK: Activity Cards
             ZStack {
@@ -54,15 +43,15 @@ struct ExploreView: View {
             .padding(.vertical)
             .frame(maxWidth: .infinity, maxHeight: .infinity)
             
-            //MARK: Action Buttons
-            HStack(spacing: 30) {
-                SwipeActionButton(imageName: "xmark", backgroundColor: Color(.systemPink))
-                
-                SwipeActionButton(imageName: "suit.heart.fill", backgroundColor: Color(.systemMint))
-            }
-            .padding(.bottom)
-            .disabled(exploreData.displayableActivities?.isEmpty ?? false)
-            .opacity((exploreData.displayableActivities?.isEmpty ?? false) ? 0.6 : 1)
+//            //MARK: Action Buttons
+//            HStack(spacing: 30) {
+//                SwipeActionButton(imageName: "xmark", backgroundColor: Color(.systemPink))
+//                
+//                SwipeActionButton(imageName: "suit.heart.fill", backgroundColor: Color(.systemMint))
+//            }
+//            .padding(.bottom)
+//            .disabled(exploreData.displayableActivities?.isEmpty ?? false)
+//            .opacity((exploreData.displayableActivities?.isEmpty ?? false) ? 0.6 : 1)
         }
     }
 }
