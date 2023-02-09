@@ -8,7 +8,7 @@
 import SwiftUI
 
 struct MatchesView: View {
-    @StateObject private var matchesData = MatchesViewModel()
+//    @StateObject private var matchesData = ExploreViewModel()
 
     var body: some View {
         VStack {
@@ -16,20 +16,20 @@ struct MatchesView: View {
                 Text("Matches")
                     .font(.title.bold())
             }
-            if let matched = matchesData.matchedActivities {
-                if matched.isEmpty {
-                    Text("You don't have matched activities with your partner yet.")
-                        .font(.title)
-                        .foregroundColor(.gray)
-                        .multilineTextAlignment(.center)
-                } else {
-                    List(matched) { item in
-                        MatchesListView(activity: item)
-                    }
-                }
-            } else {
-                ProgressView()
-            }
+//            if let matched = matchesData.displayableActivities {
+//                if matched.isEmpty {
+//                    Text("You don't have matched activities with your partner yet.")
+//                        .font(.title)
+//                        .foregroundColor(.gray)
+//                        .multilineTextAlignment(.center)
+//                } else {
+//                    List(matched) { item in
+//                        MatchesListView(activity: item)
+//                    }
+//                }
+//            } else {
+//                ProgressView()
+//            }
         }
     }
 }

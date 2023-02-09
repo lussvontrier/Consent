@@ -8,22 +8,24 @@
 import SwiftUI
 
 struct ActivityCardView: View {
-    @EnvironmentObject var exploreData: ExploreViewModel
+    @EnvironmentObject private var store: AppStore
     var activity: Activity
+    
+    
     @State private var offset = CGSize.zero
     
     var body: some View {
         
         GeometryReader { proxy in
             let size = proxy.size
-            let index = CGFloat(exploreData.index(activity: activity))
+            let index = CGFloat(store.state.index(activity: activity))
             let topOffset = (index <= 2 ? index : 2) * 15
             
             ZStack(alignment: .top) {
                 Rectangle()
                     .frame(width: size.width - topOffset, height: size.height)
                     .cornerRadius(16)
-                    .foregroundColor(activity.color)
+                    .foregroundColor(Color(.systemCyan))
                     .offset(y: -topOffset)
                     .shadow(radius: 8)
                 
@@ -78,16 +80,16 @@ struct ActivityCardView: View {
     }
     
     private func endSwipeAction() {
-        exploreData.displayableActivities?.removeFirst()
+//        store.state.exploreActivities.removeFirst()
     }
     
-    func leftSwipe() {
-        print("left swiped")
+    private func leftSwipe() {
+//        exploreData.swipe(activity: activity, right: false)
         endSwipeAction()
     }
     
-    func rightSwipe() {
-        print("right swiped")
+    private func rightSwipe() {
+//        exploreData.swipe(activity: activity, right: true)
         endSwipeAction()
     }
 }

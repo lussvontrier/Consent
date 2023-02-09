@@ -8,9 +8,10 @@
 import SwiftUI
 
 struct ContentView: View {
-        
+    let store = Store(initialState: .init(), reducer: appReducer, environment: World())
     var body: some View {
         ConsentTabView()
+            .environmentObject(store)
     }
 }
 

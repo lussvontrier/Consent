@@ -17,10 +17,11 @@ struct MatchesListView: View {
             Rectangle()
                 .frame(width: width, height: 80)
                 .cornerRadius(16)
-                .foregroundColor(activity.color)
+                .foregroundColor(Color(.systemCyan))
                 .shadow(radius: 8)
             
             HStack(spacing: 20) {
+                
                 Image("menu")
                     .resizable()
                     .scaledToFit()
@@ -32,15 +33,17 @@ struct MatchesListView: View {
                     .lineLimit(2)
                     .minimumScaleFactor(0.5)
                     .foregroundColor(.white)
+                
+                Spacer()
             }
             .frame(maxWidth: .infinity, alignment: .leading)
-            .padding()
+            .padding(.leading, 35)
         }
     }
 }
 
 struct MatchesListView_Previews: PreviewProvider {
     static var previews: some View {
-        MatchesListView(activity: Activity(name: "All", color: Color(.systemCyan)))
+        ContentView()
     }
 }

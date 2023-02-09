@@ -6,28 +6,39 @@
 //
 
 import SwiftUI
+import FirebaseFirestore
 
-class ExploreViewModel: ObservableObject {
-    @Published var fetchedActivities: [Activity] = []
-    @Published var displayableActivities: [Activity]?
-    
-    init() {
-        fetchedActivities = [
-            Activity(name: "One", color: .blue),
-            Activity(name: "Two", color: .cyan),
-            Activity(name: "Three", color: .indigo),
-            Activity(name: "Four", color: .purple),
-            Activity(name: "Five", color: .orange),
-            Activity(name: "Six", color: .teal),
-            Activity(name: "Seven", color: .yellow)
-        ]
-        
-        displayableActivities = fetchedActivities
+class ExploreViewModel {
+
+    func loadActivities(completion: @escaping ([Activity]) -> Void) {
+        FirebaseService.shared.exploreActivities { result in
+            switch result {
+            case .success(let activities):
+                completion(activities)
+            case .failure(let error):
+                print("\(error)")
+            }
+        }
     }
     
-    func index(activity: Activity) -> Int {
-        let index = displayableActivities?.firstIndex(where: {activity.id == $0.id}) ?? 0
-        return index
+    func swipe(activity: Activity, right: Bool) {
+        let db = Firestore.firestore()
+        let userId = "QrcfMz0JXZPO3knJ8wc8"
+        let swipeId = "\(userId)-\(activity.id)"
+        db.collection("swipes")
+            .document(swipeId)
+            .setData([
+                "userId": db.collection("users").document(userId),
+                "activityId": db.collection("activities").document(activity.id),
+                "swipedRight": right
+            ]) { error in
+                if let error {
+                    print("Error: \(error)")
+                } else {
+                    print("Successfully swiped")
+                }
+            }
     }
+
     
 }

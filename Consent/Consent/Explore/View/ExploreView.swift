@@ -6,9 +6,11 @@
 //
 
 import SwiftUI
+import FirebaseFirestore
 
 struct ExploreView: View {
-    @StateObject private var exploreData = ExploreViewModel()
+    @EnvironmentObject private var store: AppStore
+    private var viewModel = ExploreViewModel()
     
     var body: some View {
         
@@ -21,7 +23,7 @@ struct ExploreView: View {
             
             //MARK: Activity Cards
             ZStack {
-                if let activities = exploreData.displayableActivities {
+                if let activities = store.state.exploreActivities {
                     if activities.isEmpty {
                         Text("You're out of cards options. Please subscribe to PRO to get more options.")
                             .font(.title)
@@ -29,9 +31,7 @@ struct ExploreView: View {
                             .multilineTextAlignment(.center)
                     } else {
                         ForEach(activities.reversed()) { activity in
-                            ActivityCardView(activity: activity)
-                                .environmentObject(exploreData)
-                                
+                            ActivityCardView(activity: activity)                     
                         }
                     }
                 } else {
@@ -42,6 +42,11 @@ struct ExploreView: View {
             .padding()
             .padding(.vertical)
             .frame(maxWidth: .infinity, maxHeight: .infinity)
+            .onAppear {
+                viewModel.loadActivities { activities in
+                    store.send(.setExploreActivities(activities: activities))
+                }
+            }
             
 //            //MARK: Action Buttons
 //            HStack(spacing: 30) {
