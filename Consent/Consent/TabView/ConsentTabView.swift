@@ -2,14 +2,14 @@
 //  ConsentTabView.swift
 //  Consent
 //
-//  Created by Lusine Magauzyan on 03.02.23.
+//  Created by Lusine Magauzyan on 09.02.23.
 //
 
 import SwiftUI
 
 struct ConsentTabView: View {
     
-    @State private var selectedTab: Int = 1
+    @State private var selectedTab: Int = 0
 
     var body: some View {
         TabView(selection: $selectedTab) {
