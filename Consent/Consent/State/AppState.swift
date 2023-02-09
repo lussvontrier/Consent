@@ -7,17 +7,20 @@
 
 import Foundation
 import Combine
+import FirebaseAuth
 
 struct World {
     var service = FirebaseService.shared
 }
 
 enum AppAction {
-    case setExploreActivities(activities: [Activity])
+    case setExploreActivities(exploreActivities: [Activity])
+    case setCurrentUser(currentUser: User)
 }
 
 struct AppState {
     var exploreActivities: [Activity] = []
+    var currentUser: User?
     
     func index(activity: Activity) -> Int {
         let index = exploreActivities.firstIndex(where: {activity.id == $0.id}) ?? 0
@@ -34,6 +37,8 @@ func appReducer(
     switch action {
     case let .setExploreActivities(activities):
         state.exploreActivities = activities
+    case let .setCurrentUser(user):
+        state.currentUser = user
         //    case let .search(query):
         //        return environment.service
         //            .searchPublisher(matching: query)

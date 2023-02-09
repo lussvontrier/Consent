@@ -44,7 +44,10 @@ struct ExploreView: View {
             .frame(maxWidth: .infinity, maxHeight: .infinity)
             .onAppear {
                 viewModel.loadActivities { activities in
-                    store.send(.setExploreActivities(activities: activities))
+                    store.send(.setExploreActivities(exploreActivities: activities))
+                }
+                viewModel.signInAnonymously { user in
+                    store.send(.setCurrentUser(currentUser: user))
                 }
             }
             

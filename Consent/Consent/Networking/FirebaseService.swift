@@ -7,13 +7,26 @@
 
 import Foundation
 import FirebaseFirestore
+import FirebaseAuth
 import Combine
 
 class FirebaseService {
     
+    //MARK: Init
     static let shared = FirebaseService()
-    
     private init() { }
+    
+    //MARK: Sign in
+    func signInAnonymously(completion: @escaping (Result<User, Error>) -> Void) {
+        Auth.auth().signInAnonymously { authResult, error in
+            if let user = authResult?.user {
+                completion(.success(user))
+            } else if let error {
+                completion(.failure(error))
+            }
+        }
+    }
+
     
     func exploreActivities(completion: @escaping (Result<[Activity], Error>) -> Void) {
         

@@ -7,6 +7,7 @@
 
 import SwiftUI
 import FirebaseFirestore
+import FirebaseAuth
 
 class ExploreViewModel {
 
@@ -21,6 +22,17 @@ class ExploreViewModel {
         }
     }
     
+    func signInAnonymously(completion: @escaping (User) -> Void) {
+        FirebaseService.shared.signInAnonymously { result in
+            switch result {
+            case .success(let user):
+                completion(user)
+            case .failure(let error):
+                print("\(error)")
+            }
+        }
+    }
+        
     func swipe(activity: Activity, right: Bool) {
         let db = Firestore.firestore()
         let userId = "QrcfMz0JXZPO3knJ8wc8"
