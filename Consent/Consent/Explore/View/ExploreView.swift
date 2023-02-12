@@ -31,7 +31,8 @@ struct ExploreView: View {
                             .multilineTextAlignment(.center)
                     } else {
                         ForEach(activities.reversed()) { activity in
-                            ActivityCardView(activity: activity)                     
+                            ActivityCardView(activity: activity)
+                                .environmentObject(viewModel)
                         }
                     }
                 } else {
@@ -45,9 +46,6 @@ struct ExploreView: View {
             .onAppear {
                 viewModel.loadActivities { activities in
                     store.send(.setExploreActivities(exploreActivities: activities))
-                }
-                viewModel.signInAnonymously { user in
-                    store.send(.setCurrentUser(currentUser: user))
                 }
             }
             

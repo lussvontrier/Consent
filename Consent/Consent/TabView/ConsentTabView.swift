@@ -27,7 +27,7 @@ struct ConsentTabView: View {
                 }
                 .tag(1)
             
-            ExploreView()
+            AccountView()
                 .tabItem {
                     Image(systemName: "person")
                     Text("Account")

@@ -9,8 +9,8 @@ import SwiftUI
 
 struct ActivityCardView: View {
     @EnvironmentObject private var store: AppStore
+    @EnvironmentObject private var viewModel: ExploreViewModel
     var activity: Activity
-    
     
     @State private var offset = CGSize.zero
     
@@ -80,16 +80,21 @@ struct ActivityCardView: View {
     }
     
     private func endSwipeAction() {
-//        store.state.exploreActivities.removeFirst()
+        store.send(.removeFirstActivity)
     }
     
     private func leftSwipe() {
-//        exploreData.swipe(activity: activity, right: false)
+        if let userId = store.state.currentUser?.uid {
+            viewModel.swipe(userId: userId, activity: activity, right: false)
+        }
+
         endSwipeAction()
     }
     
     private func rightSwipe() {
-//        exploreData.swipe(activity: activity, right: true)
+        if let userId = store.state.currentUser?.uid {
+            viewModel.swipe(userId: userId, activity: activity, right: true)
+        }
         endSwipeAction()
     }
 }

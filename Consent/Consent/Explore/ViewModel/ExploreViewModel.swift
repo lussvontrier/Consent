@@ -7,9 +7,8 @@
 
 import SwiftUI
 import FirebaseFirestore
-import FirebaseAuth
 
-class ExploreViewModel {
+final class ExploreViewModel: ObservableObject {
 
     func loadActivities(completion: @escaping ([Activity]) -> Void) {
         FirebaseService.shared.exploreActivities { result in
@@ -21,21 +20,9 @@ class ExploreViewModel {
             }
         }
     }
-    
-    func signInAnonymously(completion: @escaping (User) -> Void) {
-        FirebaseService.shared.signInAnonymously { result in
-            switch result {
-            case .success(let user):
-                completion(user)
-            case .failure(let error):
-                print("\(error)")
-            }
-        }
-    }
         
-    func swipe(activity: Activity, right: Bool) {
+    func swipe(userId: String, activity: Activity, right: Bool) {
         let db = Firestore.firestore()
-        let userId = "QrcfMz0JXZPO3knJ8wc8"
         let swipeId = "\(userId)-\(activity.id)"
         db.collection("swipes")
             .document(swipeId)

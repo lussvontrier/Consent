@@ -14,6 +14,16 @@ struct ContentView: View {
     var body: some View {
         ConsentTabView()
             .environmentObject(store)
+            .onAppear {
+                FirebaseService.shared.signInAnonymously { result in
+                    switch result {
+                    case .success(let user):
+                        store.send(.setCurrentUser(currentUser: user))
+                    case .failure(let error):
+                        print("\(error)")
+                    }
+                }
+            }
     }
 }
 

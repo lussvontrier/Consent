@@ -16,6 +16,8 @@
 		062A0D51299522170057A86B /* Store.swift in Sources */ = {isa = PBXBuildFile; fileRef = 062A0D50299522170057A86B /* Store.swift */; };
 		062A0D5429955F820057A86B /* FirebaseService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 062A0D5329955F820057A86B /* FirebaseService.swift */; };
 		062A0D56299587CC0057A86B /* ConsentTabView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 062A0D55299587CC0057A86B /* ConsentTabView.swift */; };
+		062A0D5A299680AC0057A86B /* AccountView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 062A0D59299680AC0057A86B /* AccountView.swift */; };
+		062A0D5E2999645D0057A86B /* Texts.swift in Sources */ = {isa = PBXBuildFile; fileRef = 062A0D5D2999645D0057A86B /* Texts.swift */; };
 		06C1C57A2989B4CF0002BD30 /* ConsentApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 06C1C5792989B4CF0002BD30 /* ConsentApp.swift */; };
 		06C1C57C2989B4CF0002BD30 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 06C1C57B2989B4CF0002BD30 /* ContentView.swift */; };
 		06C1C57E2989B4D00002BD30 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 06C1C57D2989B4D00002BD30 /* Assets.xcassets */; };
@@ -37,6 +39,8 @@
 		062A0D50299522170057A86B /* Store.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Store.swift; sourceTree = "<group>"; };
 		062A0D5329955F820057A86B /* FirebaseService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirebaseService.swift; sourceTree = "<group>"; };
 		062A0D55299587CC0057A86B /* ConsentTabView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConsentTabView.swift; sourceTree = "<group>"; };
+		062A0D59299680AC0057A86B /* AccountView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountView.swift; sourceTree = "<group>"; };
+		062A0D5D2999645D0057A86B /* Texts.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Texts.swift; sourceTree = "<group>"; };
 		06C1C5762989B4CF0002BD30 /* Consent.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Consent.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		06C1C5792989B4CF0002BD30 /* ConsentApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConsentApp.swift; sourceTree = "<group>"; };
 		06C1C57B2989B4CF0002BD30 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -91,6 +95,30 @@
 			path = Networking;
 			sourceTree = "<group>";
 		};
+		062A0D57299680970057A86B /* Account */ = {
+			isa = PBXGroup;
+			children = (
+				062A0D582996809E0057A86B /* View */,
+			);
+			path = Account;
+			sourceTree = "<group>";
+		};
+		062A0D582996809E0057A86B /* View */ = {
+			isa = PBXGroup;
+			children = (
+				062A0D59299680AC0057A86B /* AccountView.swift */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		062A0D5B299964360057A86B /* CustomViews */ = {
+			isa = PBXGroup;
+			children = (
+				062A0D5D2999645D0057A86B /* Texts.swift */,
+			);
+			path = CustomViews;
+			sourceTree = "<group>";
+		};
 		06C1C56D2989B4CF0002BD30 = {
 			isa = PBXGroup;
 			children = (
@@ -111,9 +139,11 @@
 		06C1C5782989B4CF0002BD30 /* Consent */ = {
 			isa = PBXGroup;
 			children = (
+				062A0D5B299964360057A86B /* CustomViews */,
 				062A0D5229955F700057A86B /* Networking */,
 				062A0D4D2993E20E0057A86B /* State */,
 				062A0D4C2992E7A60057A86B /* TabView */,
+				062A0D57299680970057A86B /* Account */,
 				06C1C5A029913ACE0002BD30 /* Matches */,
 				06C1C59E29913A980002BD30 /* Explore */,
 				06C1C587298A9F350002BD30 /* Constants */,
@@ -278,12 +308,14 @@
 				062A0D5429955F820057A86B /* FirebaseService.swift in Sources */,
 				06C1C59C298D81150002BD30 /* MatchesView.swift in Sources */,
 				06C1C590298AAF9E0002BD30 /* Activity.swift in Sources */,
+				062A0D5A299680AC0057A86B /* AccountView.swift in Sources */,
 				06C1C598298D68D70002BD30 /* SwipeActionButton.swift in Sources */,
 				062A0D3529913B030057A86B /* MatchesListView.swift in Sources */,
 				06C1C57C2989B4CF0002BD30 /* ContentView.swift in Sources */,
 				062A0D51299522170057A86B /* Store.swift in Sources */,
 				062A0D56299587CC0057A86B /* ConsentTabView.swift in Sources */,
 				06C1C594298AB3E60002BD30 /* ActivityCardView.swift in Sources */,
+				062A0D5E2999645D0057A86B /* Texts.swift in Sources */,
 				06C1C57A2989B4CF0002BD30 /* ConsentApp.swift in Sources */,
 				06C1C596298D657D0002BD30 /* StickerTextView.swift in Sources */,
 				062A0D4F2993E2290057A86B /* AppState.swift in Sources */,
