@@ -15,12 +15,22 @@ struct ContentView: View {
         ConsentTabView()
             .environmentObject(store)
             .onAppear {
-                FirebaseService.shared.signInAnonymously { result in
-                    switch result {
-                    case .success(let user):
-                        store.send(.setCurrentUser(currentUser: user))
-                    case .failure(let error):
-                        print("\(error)")
+                if let currentUser = store.state.currentUser {
+                    FirebaseService.shared.addLinkListener(currentUserId: currentUser.uid) { partnerId in
+                        store.send(.setPartnerId(partnerId: partnerId))
+                    }
+                } else {
+                    FirebaseService.shared.signInAnonymously { result in
+                        switch result {
+                        case .success(let user):
+                            store.send(.setCurrentUser(currentUser: user))
+                            
+                            FirebaseService.shared.addLinkListener(currentUserId: user.uid) { partnerId in
+                                store.send(.setPartnerId(partnerId: partnerId))
+                            }
+                        case .failure(let error):
+                            print("\(error)")
+                        }
                     }
                 }
             }

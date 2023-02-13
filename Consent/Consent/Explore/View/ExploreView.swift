@@ -17,8 +17,7 @@ struct ExploreView: View {
         //MARK: Top Menu
         VStack {
             HStack {
-                Text("Explore")
-                    .font(.title.bold())
+                TabTitle(title: "Explore")
             }
             
             //MARK: Activity Cards
@@ -64,6 +63,6 @@ struct ExploreView: View {
 
 struct ExploreView_Previews: PreviewProvider {
     static var previews: some View {
-        ExploreView()
+        ContentView()
     }
 }

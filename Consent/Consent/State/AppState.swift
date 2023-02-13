@@ -17,13 +17,13 @@ enum AppAction {
     case setExploreActivities(exploreActivities: [Activity])
     case removeFirstActivity
     case setCurrentUser(currentUser: User)
-    case linkPartner(currentUser: User, partnerUserId: String)
+    case setPartnerId(partnerId: String?)
 }
 
 struct AppState {
     var exploreActivities: [Activity] = []
     var currentUser: User?
-    var partnerUserId: String?
+    var partnerId: String?
     
     func index(activity: Activity) -> Int {
         let index = exploreActivities.firstIndex(where: {activity.id == $0.id}) ?? 0
@@ -42,10 +42,8 @@ func appReducer(
         state.exploreActivities = activities
     case let .setCurrentUser(user):
         state.currentUser = user
-        FirebaseService.shared.registerToFirebase(userId: user.uid)
-    case let .linkPartner(user, partnerUserId):
-        state.partnerUserId = partnerUserId
-        FirebaseService.shared.link(currentUserId: user.uid, partnerId: partnerUserId)
+    case let .setPartnerId(partnerId):
+        state.partnerId = partnerId
     case .removeFirstActivity:
         state.exploreActivities.removeFirst()
         //    case let .search(query):

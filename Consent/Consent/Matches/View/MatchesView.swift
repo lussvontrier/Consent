@@ -13,8 +13,7 @@ struct MatchesView: View {
     var body: some View {
         VStack {
             HStack {
-                Text("Matches")
-                    .font(.title.bold())
+                TabTitle(title: "Matches")
             }
 //            if let matched = matchesData.displayableActivities {
 //                if matched.isEmpty {

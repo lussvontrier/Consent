@@ -15,6 +15,8 @@ class FirebaseService {
     //MARK: Init
     static let shared = FirebaseService()
     private init() { }
+
+    private let db = Firestore.firestore()
     
     //MARK: Sign in
     func signInAnonymously(completion: @escaping (Result<User, Error>) -> Void) {
@@ -28,25 +30,25 @@ class FirebaseService {
         }
     }
     
-    func registerToFirebase(userId: String) {
-        let db = Firestore.firestore()
-        db.collection("users")
-            .document(userId)
-            .setData([
-                "name": "Test"
-            ]) { error in
-                if let error {
-                    print("Error: \(error)")
-                } else {
-                    print("Successfully swiped")
-                }
-            }
-    }
+//    func registerToFirebase(userId: String) {
+//        let db = Firestore.firestore()
+//        db.collection("users")
+//            .document(userId)
+//            .setData([
+//                "name": "Test"
+//            ]) { error in
+//                if let error {
+//                    print("Error: \(error)")
+//                } else {
+//                    print("Successfully swiped")
+//                }
+//            }
+//    }
 
     //MARK: Get explore activities
     func exploreActivities(completion: @escaping (Result<[Activity], Error>) -> Void) {
         
-        Firestore.firestore().collection("activities").getDocuments { snapshot, error in
+        db.collection("activities").getDocuments { snapshot, error in
             if let error {
                 completion(.failure(error))
             } else if let snapshot {
@@ -69,11 +71,11 @@ class FirebaseService {
     
     //MARK: Link partner
     func link(currentUserId: String, partnerId: String) {
-        let db = Firestore.firestore()
+        
         db.collection("users")
             .document(currentUserId)
             .setData([
-                "partnerId": db.collection("users").document(partnerId)
+                "partnerId": partnerId
             ]) { error in
                 if let error {
                     print("Error: \(error)")
@@ -85,7 +87,7 @@ class FirebaseService {
         db.collection("users")
             .document(partnerId)
             .setData([
-                "partnerId": db.collection("users").document(currentUserId)
+                "partnerId": currentUserId
             ]) { error in
                 if let error {
                     print("Error: \(error)")
@@ -95,7 +97,46 @@ class FirebaseService {
             }
     }
     
+    func unLink(currentUserId: String, partnerId: String) {
+
+        db.collection("users").document(currentUserId).updateData([
+            "partnerId": FieldValue.delete(),
+        ]) { err in
+            if let err = err {
+                print("Error updating document: \(err)")
+            } else {
+                print("Document successfully updated")
+            }
+        }
+        
+        db.collection("users").document(partnerId).updateData([
+            "partnerId": FieldValue.delete(),
+        ]) { err in
+            if let err = err {
+                print("Error updating document: \(err)")
+            } else {
+                print("Document successfully updated")
+            }
+        }
+    }
     
+    func addLinkListener(currentUserId: String, completion: @escaping (String?) -> Void) {
+
+        db.collection("users").document(currentUserId)
+            .addSnapshotListener { documentSnapshot, error in
+                guard let document = documentSnapshot else {
+                    print("Error fetching document: \(error!)")
+                    return
+                }
+                print("document: \(document)")
+                if let partnerId = document.get("partnerId") as? String {
+                    completion(partnerId)
+                } else {
+                    completion(nil)
+                }
+
+            }
+    }
     
     
     

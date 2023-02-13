@@ -15,8 +15,20 @@ struct TabTitle: View {
     }
 }
 
+struct DescriptionText: View {
+    let title: String
+    let color: Color
+    var body: some View {
+        Text(title)
+            .font(.system(size: 15))
+            .fontWeight(.semibold)
+            .multilineTextAlignment(.center)
+            .foregroundColor(color)
+    }
+}
+
 struct Texts_Previews: PreviewProvider {
     static var previews: some View {
-        TabTitle(title: "Account")
+        ContentView()
     }
 }
